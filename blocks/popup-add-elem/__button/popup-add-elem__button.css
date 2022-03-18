@@ -1,0 +1,35 @@
+.popup-add-elem__button {
+  min-width: 358px;
+  min-height: 50px;
+  background-color: black;
+  cursor: pointer;
+  padding: 0;
+  color: white;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 2px;
+  border: 0;
+  transition: 0.3s;
+}
+
+.popup-add-elem__button:hover {
+  opacity: 0.8;
+}
+
+@media all and (max-width: 1023px) {
+  .popup-add-elem__button { 
+    min-width: 300px;
+    min-height: 40px;
+    font-size: 14px;
+  }
+}
+
+@media all and (max-width: 665px) {
+  .popup-add-elem__button { 
+    min-width: 238px;
+    min-height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

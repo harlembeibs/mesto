@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="images/header-logo.svg" alt="Логотип веб-приложения Mesto">
+      <hr class="header__line">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__info-avatar" src="images/profile-avatar.png" alt="Аватарка пользователя">
+          <div class="profile__info-user">
+            <h2 class="profile__info-user-name">Жак-Ив Кусто</h2>
+            <button class="profile__info-user-button">
+              <img class="profile__info-user-button-vector" src="images/profile__info-user-button.svg" alt="Нажать на кнопку">
+            </button>
+            <p class="profile__info-user-status">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button">
+          <img class="profile__add-button-vector" src="images/profile__add-button-vector.svg" alt="Нажать на кнопку">
+        </button>
+      </section>
+      <section class="elements">
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
+    </footer>
+    <section class="popup popup-profile">
+      <div class="popup__form-edit popup-profile__form-edit">
+        <h3 class="popup__title popup-profile__title">Редактировать профиль</h3>
+        <form class="popup__form popup-profile__form form" novalidate>
+          <label class="popup__input-field popup-profile__input-field form__label">
+            <input id="name-input" class="popup__first-input popup-profile__name-input form__input" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+            <span class="popup__span popup-profile__span form__input-error name-input-error"></span>
+          </label>
+          <label class="popup__input-field popup-profile__input-field form__label">
+            <input id="job-input" class="popup__second-input popup-profile__job-input form__input" value="Исследователь океана" minlength="2" maxlength="200" required>
+            <span class="popup__span popup-profile__span form__input-error job-input-error"></span>
+          </label>
+          <button class="popup__button popup-profile__button form__submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button popup-profile__close-button">
+          <img class="popup__close-button-vector popup-profile__close-button-vector" src="images/CloseIcon.svg" alt="Нажать на кнопку">
+        </button>
+      </div>
+    </section>
+    <section class="popup popup-add-elem">
+      <div class="popup__form-edit popup-add-elem__form-elm">
+        <h3 class="popup__title popup-add-elem__title">Новое место</h3>
+        <form class="popup__form popup-add-elem__form form" novalidate>
+          <label class="popup__input-field popup-add-elem__input-field form__label">
+            <input id="add-name-input" class="popup__first-input popup-add-elem__name-input form__input" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="popup__span popup-add-elem__span form__input-error add-name-input-error"></span>
+          </label>
+          <label class="popup__input-field popup-add-elem__input-field form__label">
+            <input id="add-link-input" class="popup__second-input popup-add-elem__link-input form__input" placeholder="Ссылка на картинку" type="url" required>
+            <span class="popup__span popup-add-elem__span form__input-error add-link-input-error"></span>
+          </label>
+          <button class="popup__button popup-add-elem__button form__submit">Создать</button>
+        </form>
+        <button class="popup__close-button popup-add-elem__close-button">
+          <img class="popup__close-button-vector popup-add-elem__close-button-vector" src="images/CloseIcon.svg" alt="Нажать на кнопку">
+        </button>
+      </div>
+    </section>
+    <section class="popup popup-element">
+      <div class="popup-element__container">
+        <img class="popup-element__image" src="images/kirill-pershin-1088404-unsplash.png" alt="Изображение этого места">
+        <p class="popup-element__title"></p>
+        <button class="popup__close-button popup-element__close-button">
+          <img class="popup-element__close-button-vector" src="images/CloseIcon.svg" alt="Нажать на кнопку">
+        </button>
+      </div>
+    </section>
+  </div>
+  <template id="elementTemplate">
+    <article class="element">
+      <img class="element__photo" src="images/kirill-pershin-1404681-unsplash.png" alt="Изображение этого места">
+      <button class="element__delete-button"></button>
+      <div class="element__container">
+        <p class="element__title"></p>
+        <button class="element__like-button"></button>
+      </div>
+    </article>
+  </template>
+  <script src="scripts/validate.js"></script>
+  <script src="scripts/script.js"></script>
+</body>
+</html>

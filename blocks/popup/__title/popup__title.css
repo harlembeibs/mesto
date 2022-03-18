@@ -1,0 +1,27 @@
+.popup__title {
+    min-width: 358px;
+    max-height: 23px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 34px auto 54px;
+  }
+
+  @media all and (max-width: 1023px) {
+    .popup__title {
+      min-width: 295px;
+      max-height: 25px;
+      margin: 20px auto 15px;
+    }
+  }  
+  
+  @media all and (max-width: 665px) {
+    .popup__title {
+      min-width: 238px;
+      max-height: 22px;
+      font-size: 18px;
+      line-height: 22px;
+      margin: 25px auto 75px;
+    }
+  }

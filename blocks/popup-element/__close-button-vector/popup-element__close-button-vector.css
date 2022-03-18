@@ -1,0 +1,18 @@
+.popup-element__close-button-vector {
+    max-width: 32px;
+    min-height: 32px;
+  }
+  
+  @media all and (max-width: 1023px) {
+    .popup-element__close-button-vector {
+      max-width: 20px;
+      min-height: 20px;
+    }
+  }
+  
+  @media all and (max-width: 665px) {
+    .popup-element__close-button-vector {
+      max-width: 20px;
+      min-height: 20px;
+    }
+  }

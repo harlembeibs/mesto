@@ -1,0 +1,21 @@
+.profile__info-user-status {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  grid-area: profile__info-user-status;
+  margin: 0;
+  max-width: 336px;
+  min-height: 25px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media all and (max-width: 665px) {
+  .profile__info-user-status {
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 282px;
+    min-height: 20px;
+  }
+}

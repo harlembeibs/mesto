@@ -1,0 +1,7 @@
+.element__like-button_active {
+  background: url(../../../../images/heart-filled.svg) center no-repeat;
+}
+
+.element__like-button_active:hover {
+  opacity: 1;
+}

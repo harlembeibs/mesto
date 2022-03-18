@@ -1,0 +1,19 @@
+.content {
+  max-width: 880px;
+  padding-top: 40px;
+  padding-bottom: 67px;
+  margin: 0 auto;
+}
+
+@media all and (max-width: 1023px) {
+  .content {
+    max-width: 581px;
+  }
+}
+
+@media all and (max-width: 665px) { 
+  .content {
+    padding-top: 42px;
+    padding-bottom: 48px;
+  }
+}

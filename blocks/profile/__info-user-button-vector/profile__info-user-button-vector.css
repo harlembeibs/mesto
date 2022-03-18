@@ -1,0 +1,11 @@
+.profile__info-user-button-vector {
+  width: 10px;
+  height: 10px;
+}
+
+@media all and (max-width: 665px) {
+  .profile__info-user-button-vector {
+    width: 7.5px;
+    height: 7.5px; 
+  }
+}

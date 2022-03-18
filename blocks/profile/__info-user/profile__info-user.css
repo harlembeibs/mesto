@@ -1,0 +1,29 @@
+.profile__info-user {
+  display: grid;
+  grid-template-columns: 294px 24px;
+  grid-template-rows: 39px 18px;
+  grid-template-areas:
+  "profile__info-user-name profile__info-user-button"
+  "profile__info-user-status .";
+  column-gap: 18px;
+  row-gap: 16px;
+  max-width: 336px;
+}
+
+@media all and (max-width: 1023px) {
+  .profile__info-user {
+    column-gap: 10px;
+  }
+}
+
+@media all and (max-width: 665px) {
+  .profile__info-user {
+    grid-template-columns: 189px 18px;
+    grid-template-rows: 26px 14px;
+    column-gap: 10px;
+    row-gap: 14px;
+    text-align: center;
+    padding-bottom: 36px;
+    margin-left: 27px;
+  }
+}

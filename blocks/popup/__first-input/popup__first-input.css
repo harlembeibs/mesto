@@ -1,0 +1,26 @@
+.popup__first-input {
+    outline: none;
+    min-width: 358px;
+    max-height: 14px;
+    margin: 0 auto 30px;
+    padding: 0 0 13px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    border: 0;
+    border-bottom: 2px solid rgb(0, 0, 0, 0.2);
+  }
+
+  @media all and (max-width: 1023px) {
+    .popup__first-input {
+      min-width: 295px;
+      margin: 0 auto 15px;
+    }
+  }  
+
+  @media all and (max-width: 665px) {
+    .popup__first-input {
+      min-width: 238px;
+      margin: 0 auto 30px;
+    }
+  }

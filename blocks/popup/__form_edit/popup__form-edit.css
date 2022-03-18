@@ -1,0 +1,26 @@
+.popup__form-edit {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 430px;
+  height: 330px;
+  background-color: white;
+  border-radius: 10px;
+  z-index: -1;
+  position: relative;
+  }
+
+
+@media all and (max-width: 1023px) {
+  .popup__form-edit { 
+    width: 340px;
+    height: 225px;
+  }
+}  
+
+@media all and (max-width: 665px) {
+  .popup__form-edit { 
+    width: 282px;
+    height: 322px;
+  }
+}
