@@ -6,4 +6,4 @@
 
 Планы по доработке: применить ООП;
 
-Ссылка на веб страницу: https://zvzyung.github.io/mesto/
+Ссылка на веб страницу: https://harlembeibs.github.io/mesto/
