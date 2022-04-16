@@ -1,12 +1,13 @@
+import { FormValidator } from './FormValidator.js'
+import { Card } from './Card.js'
+import {popupElement, openPopup, closePopup, clearPopupValues} from './utils.js'
+
 const infoUserButton = document.querySelector('.profile__info-user-button')
 const infoUserName = document.querySelector('.profile__info-user-name')
 const infoUserStatus = document.querySelector('.profile__info-user-status')
 const popups = document.querySelectorAll('.popup')
-const popupsCloseButton = document.querySelectorAll('.popup__close-button')
-const popupsActive = document.querySelector('.popup_active')
 const popupProfile = document.querySelector('.popup-profile')
 const popupProfileClosebutton = document.querySelector('.popup-profile__close-button')
-const popupProfileButton = document.querySelector('.popup-profile__button')
 const popupProfileNameInput = document.querySelector('.popup-profile__name-input')
 const popupProfileJobInput = document.querySelector('.popup-profile__job-input')
 const popupProfileForm = document.querySelector('.popup-profile__form')
@@ -17,13 +18,7 @@ const popupAddElemCloseButton = document.querySelector('.popup-add-elem__close-b
 const popupAddElemNameInput = document.querySelector('.popup-add-elem__name-input')
 const popupAddElemLinkInput = document.querySelector('.popup-add-elem__link-input')
 const popupAddElemForm = document.querySelector('.popup-add-elem__form')
-const popupElement = document.querySelector('.popup-element')
 const popupElementCloseButton = popupElement.querySelector('.popup-element__close-button')
-const popupElementImage = popupElement.querySelector('.popup-element__image')
-const popupElementTitle = popupElement.querySelector('.popup-element__title')
-const elementTemplate = document.querySelector('#elementTemplate').content
-const formInputTypeError = document.querySelectorAll('.form__input-error')
-const formInputError =  document.querySelectorAll('.form__input')
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,37 +46,28 @@ const initialCards = [
   }
 ]
 
-/**this function open popup */
-function openPopup(popup) {
-  popup.classList.add('popup_active')
-  document.addEventListener('keydown', escClosePopup)
+
+const validationConfig = {
+  inputElement: '.form__input',
+  submit: '.form__submit',
+  inputElementTypeError: 'form__input_type_error',
+  errorElementActive: 'form__input-error_active',
+  SubmitInactive: 'form__submit_inactive'
 }
 
-/**this function close popup */
-function closePopup(popup) {
-  popup.classList.remove('popup_active')
-  document.removeEventListener('keydown', escClosePopup)
+
+const editProfileValidator = new FormValidator(validationConfig, popupProfileForm)
+const addCardValidator = new FormValidator(validationConfig, popupAddElemForm)
+
+editProfileValidator.enableValidation()
+addCardValidator.enableValidation()
+
+const renderCard = (data, wrap) => {
+  const card = new Card(data)
+  
+  wrap.prepend(card.createCard(data))
 }
 
-/**this function clear validation values */
-function clearPopupValues(popup) {
-  popup.querySelectorAll('.form__input-error').forEach((elm) => {
-    elm.textContent = ''
-  })
-  popup.querySelectorAll('.form__input').forEach((elm) => {
-    elm.classList.remove('form__input_type_error')
-  })
-}
-
-/**this function close popup with escape */
-function escClosePopup(event) {
-  if (event.key === 'Escape') {
-    const popupForClose = document.querySelector('.popup_active')
-    closePopup(popupForClose)
-  }
-}
-
-/**this function save profile info */
 function saveProfileInfo(evt) {
   evt.preventDefault()
   infoUserName.textContent = popupProfileNameInput.value
@@ -89,7 +75,6 @@ function saveProfileInfo(evt) {
   closePopup(popupProfile)
 }
 
-/**this function save element info */
 function saveElemInfo(evt) {
   evt.preventDefault()
   const popupAddElemInputValue = {
@@ -101,41 +86,6 @@ function saveElemInfo(evt) {
   popupAddElemLinkInput.value = ''
   closePopup(popupAddElem)
 }
-/**this function like element */
-function likeElement(evt) {
-  evt.target.classList.toggle('element__like-button_active')
-}
-/**this function delete element */
-function deleteElement(evt) {
-  evt.target.parentElement.remove()
-}
-
-/**this function create card */
-function createCard(item) {
-  const element = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementPhoto = element.querySelector('.element__photo')
-  const elementTitle = element.querySelector('.element__title')
-  elementPhoto.src = item.link
-  elementTitle.textContent = item.name
-  elementPhoto.alt = `Вид на ${item.name}`
-  addElementListeners(element)
-  return element
-}
-
-/**this function add element listeners */
-function addElementListeners(elm) {
-  elm.querySelector('.element__like-button').addEventListener('click', likeElement)
-  elm.querySelector('.element__delete-button').addEventListener('click', deleteElement)
-  elm.querySelector('.element__photo').addEventListener('click', function(evt) {
-    const evtTarget = evt.target
-    popupElementImage.src = evtTarget.src
-    popupElementTitle.textContent = evtTarget.parentElement.textContent
-    popupElementImage.alt = `Вид на ${popupElementTitle.textContent}`
-    openPopup(popupElement)
-    clearPopupValues()
-  })
-}
-
 
 
 infoUserButton.addEventListener('click', function() {
@@ -145,7 +95,6 @@ infoUserButton.addEventListener('click', function() {
   popupProfileJobInput.value = infoUserStatus.textContent
 })
 
-
 profileAddButton.addEventListener('click', function() {
   openPopup(popupAddElem)
   clearPopupValues(popupAddElemForm)
@@ -153,16 +102,13 @@ profileAddButton.addEventListener('click', function() {
   popupAddElemLinkInput.value = ''
 })
 
-
 popupProfileClosebutton.addEventListener('click', function() {
   closePopup(popupProfile)
 })
 
-
 popupAddElemCloseButton.addEventListener('click', function() {
   closePopup(popupAddElem)
 })
-
 
 popupElementCloseButton.addEventListener('click', function() {
   closePopup(popupElement)
@@ -184,7 +130,8 @@ popupProfileForm.addEventListener('submit', saveProfileInfo)
 popupAddElemForm.addEventListener('submit', saveElemInfo)
 
 
-for (let i = 0; i < initialCards.length; i += 1) {
-  elements.prepend(createCard(initialCards[i]))
-}
+
+initialCards.forEach((data) => {
+  renderCard(data, elements)
+})
 
