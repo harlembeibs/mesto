@@ -19,6 +19,8 @@ const popupAddElemNameInput = document.querySelector('.popup-add-elem__name-inpu
 const popupAddElemLinkInput = document.querySelector('.popup-add-elem__link-input')
 const popupAddElemForm = document.querySelector('.popup-add-elem__form')
 const popupElementCloseButton = popupElement.querySelector('.popup-element__close-button')
+const formInputTypeError = document.querySelectorAll('.form__input-error') 
+const formInputError =  document.querySelectorAll('.form__input') 
 const initialCards = [
   {
     name: 'Архыз',
