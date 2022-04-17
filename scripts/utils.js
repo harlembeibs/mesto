@@ -19,12 +19,3 @@ export function openPopup(popup) {
   popup.classList.add('popup_active')
   document.addEventListener('keydown', escClosePopup)
 }
-
-export function clearPopupValues(popup) {
-  popup.querySelectorAll('.form__input-error').forEach((elm) => {
-    elm.textContent = ''
-  })
-  popup.querySelectorAll('.form__input').forEach((elm) => {
-    elm.classList.remove('form__input_type_error')
-  })
-}

@@ -1,6 +1,6 @@
 import { FormValidator } from './FormValidator.js'
 import { Card } from './Card.js'
-import {popupElement, openPopup, closePopup, clearPopupValues} from './utils.js'
+import {popupElement, openPopup, closePopup} from './utils.js'
 
 const infoUserButton = document.querySelector('.profile__info-user-button')
 const infoUserName = document.querySelector('.profile__info-user-name')
@@ -61,8 +61,6 @@ const validationConfig = {
 const editProfileValidator = new FormValidator(validationConfig, popupProfileForm)
 const addCardValidator = new FormValidator(validationConfig, popupAddElemForm)
 
-editProfileValidator.enableValidation()
-addCardValidator.enableValidation()
 
 const renderCard = (data, wrap) => {
   const card = new Card(data)
@@ -83,7 +81,8 @@ function saveElemInfo(evt) {
     name: popupAddElemNameInput.value.slice(0, 1).toUpperCase() + popupAddElemNameInput.value.slice(1),
     link: popupAddElemLinkInput.value
   }
-  elements.prepend(createCard(popupAddElemInputValue))
+  const card = new Card(popupAddElemInputValue)
+  elements.prepend(card.createCard(popupAddElemInputValue))
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
   closePopup(popupAddElem)
@@ -92,14 +91,15 @@ function saveElemInfo(evt) {
 
 infoUserButton.addEventListener('click', function() {
   openPopup(popupProfile)
-  clearPopupValues(popupProfileForm)
+  editProfileValidator.enableValidation()
   popupProfileNameInput.value = infoUserName.textContent
   popupProfileJobInput.value = infoUserStatus.textContent
 })
 
 profileAddButton.addEventListener('click', function() {
   openPopup(popupAddElem)
-  clearPopupValues(popupAddElemForm)
+  addCardValidator.clearPopupValues()
+  addCardValidator.enableValidation()
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
 })
