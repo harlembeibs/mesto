@@ -1,9 +1,10 @@
-import {popupElement, popupElementImage, popupElementTitle, openPopup, elementTemplate} from './utils.js'
+import {popupElement, popupElementImage, popupElementTitle, openPopup} from './utils.js'
 
 export class Card {
-  constructor(data) {
+  constructor(data, selector) {
     this._name = data.name
     this._link = data.link
+    this._elementTemplate = selector
   }
 
   _likeElement = () => {
@@ -18,16 +19,16 @@ export class Card {
     this._elementLikeButton.addEventListener('click', this._likeElement)
     this._elementDeleteButton.addEventListener('click', this._deleteElement)
     this._elementPhoto.addEventListener('click', (evt) => {
-      popupElementImage.src = evt.target.src
-      popupElementTitle.textContent = evt.target.parentElement.textContent
-      popupElementImage.alt = `Вид на ${popupElementTitle.textContent}`
+      popupElementImage.src = this._link
+      popupElementTitle.textContent = this._name
+      popupElementImage.alt = `Вид на ${this._name}`
 
       openPopup(popupElement)
     })
   }
 
   createCard() {
-    this._element = elementTemplate.querySelector('.element').cloneNode(true);
+    this._element = this._elementTemplate.querySelector('.element').cloneNode(true);
     this._elementPhoto = this._element.querySelector('.element__photo')
     this._elementTitle = this._element.querySelector('.element__title')
     this._elementLikeButton = this._element.querySelector('.element__like-button')

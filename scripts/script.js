@@ -19,8 +19,7 @@ const popupAddElemNameInput = document.querySelector('.popup-add-elem__name-inpu
 const popupAddElemLinkInput = document.querySelector('.popup-add-elem__link-input')
 const popupAddElemForm = document.querySelector('.popup-add-elem__form')
 const popupElementCloseButton = popupElement.querySelector('.popup-element__close-button')
-const formInputTypeError = document.querySelectorAll('.form__input-error') 
-const formInputError =  document.querySelectorAll('.form__input') 
+const elementTemplate = document.querySelector('#elementTemplate').content
 const initialCards = [
   {
     name: 'Архыз',
@@ -60,13 +59,21 @@ const validationConfig = {
 
 const editProfileValidator = new FormValidator(validationConfig, popupProfileForm)
 const addCardValidator = new FormValidator(validationConfig, popupAddElemForm)
+editProfileValidator.enableValidation()
+addCardValidator.enableValidation()
 
+
+function createCard(item) {
+  const cardElement = new Card(item, elementTemplate).createCard(item, elementTemplate)
+
+  return cardElement
+}
 
 const renderCard = (data, wrap) => {
-  const card = new Card(data)
-  
-  wrap.prepend(card.createCard(data))
+  const card = createCard(data)
+  wrap.prepend(card)
 }
+
 
 function saveProfileInfo(evt) {
   evt.preventDefault()
@@ -91,17 +98,15 @@ function saveElemInfo(evt) {
 
 infoUserButton.addEventListener('click', function() {
   openPopup(popupProfile)
-  editProfileValidator.enableValidation()
   popupProfileNameInput.value = infoUserName.textContent
   popupProfileJobInput.value = infoUserStatus.textContent
 })
 
 profileAddButton.addEventListener('click', function() {
   openPopup(popupAddElem)
-  addCardValidator.clearPopupValues()
-  addCardValidator.enableValidation()
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
+  addCardValidator.clearPopupValues()
 })
 
 popupProfileClosebutton.addEventListener('click', function() {
@@ -132,8 +137,6 @@ popupProfileForm.addEventListener('submit', saveProfileInfo)
 popupAddElemForm.addEventListener('submit', saveElemInfo)
 
 
-
 initialCards.forEach((data) => {
   renderCard(data, elements)
 })
-

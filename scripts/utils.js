@@ -1,7 +1,6 @@
 export const popupElement = document.querySelector('.popup-element')
 export const popupElementImage = popupElement.querySelector('.popup-element__image')
 export const popupElementTitle = popupElement.querySelector('.popup-element__title')
-export const elementTemplate = document.querySelector('#elementTemplate').content
 
 export function escClosePopup(event) {
   if (event.key === 'Escape') {

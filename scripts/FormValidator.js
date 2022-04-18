@@ -52,13 +52,13 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    const inputList = Array.from(this._form.querySelectorAll(this._settings.inputElement))
-    const buttonElement = this._form.querySelector(this._settings.submit)
-    this._toggleButtonState(inputList, buttonElement)
-    inputList.forEach((inputElem) => {
+    this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputElement))
+    this._buttonElement = this._form.querySelector(this._settings.submit)
+    this._toggleButtonState(this._inputList, this._buttonElement)
+    this._inputList.forEach((inputElem) => {
       inputElem.addEventListener('input', () => {
         this._checkInputValidity(inputElem)
-        this._toggleButtonState(inputList, buttonElement)
+        this._toggleButtonState(this._inputList, this._buttonElement)
       })
     })
   }
