@@ -42,15 +42,6 @@ export class FormValidator {
     }
   }
 
-  clearPopupValues() { 
-    this._form.querySelectorAll(`${this._settings.inputElement}-error`).forEach((elm) => { 
-      elm.textContent = '' 
-    }) 
-    this._form.querySelectorAll(this._settings.inputElement).forEach((elm) => { 
-      elm.classList.remove(this._settings.inputElementTypeError) 
-    }) 
-  }
-
   _setEventListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._settings.inputElement))
     this._buttonElement = this._form.querySelector(this._settings.submit)
@@ -61,6 +52,16 @@ export class FormValidator {
         this._toggleButtonState(this._inputList, this._buttonElement)
       })
     })
+  }
+
+  clearPopupValues() {
+    this._form.querySelectorAll(`${this._settings.inputElement}`).forEach((elm) => { 
+      this._hideInputError(elm)
+    })
+  }
+
+  checkOnOpening() {
+    this.enableValidation()
   }
 
   enableValidation() {

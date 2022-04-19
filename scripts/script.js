@@ -88,8 +88,7 @@ function saveElemInfo(evt) {
     name: popupAddElemNameInput.value.slice(0, 1).toUpperCase() + popupAddElemNameInput.value.slice(1),
     link: popupAddElemLinkInput.value
   }
-  const card = new Card(popupAddElemInputValue)
-  elements.prepend(card.createCard(popupAddElemInputValue))
+  elements.prepend(createCard(popupAddElemInputValue))
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
   closePopup(popupAddElem)
@@ -100,6 +99,8 @@ infoUserButton.addEventListener('click', function() {
   openPopup(popupProfile)
   popupProfileNameInput.value = infoUserName.textContent
   popupProfileJobInput.value = infoUserStatus.textContent
+  editProfileValidator.clearPopupValues()
+  editProfileValidator.checkOnOpening()
 })
 
 profileAddButton.addEventListener('click', function() {
@@ -107,6 +108,7 @@ profileAddButton.addEventListener('click', function() {
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
   addCardValidator.clearPopupValues()
+  addCardValidator.checkOnOpening()
 })
 
 popupProfileClosebutton.addEventListener('click', function() {
