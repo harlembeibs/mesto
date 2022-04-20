@@ -54,14 +54,12 @@ export class FormValidator {
     })
   }
 
-  clearPopupValues() {
-    this._form.querySelectorAll(`${this._settings.inputElement}`).forEach((elm) => { 
-      this._hideInputError(elm)
-    })
-  }
+  resetValidation() {
+    this._toggleButtonState(this._inputList, this._buttonElement)
 
-  checkOnOpening() {
-    this.enableValidation()
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    })
   }
 
   enableValidation() {

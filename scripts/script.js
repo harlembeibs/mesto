@@ -64,7 +64,7 @@ addCardValidator.enableValidation()
 
 
 function createCard(item) {
-  const cardElement = new Card(item, elementTemplate).createCard(item, elementTemplate)
+  const cardElement = new Card(item, elementTemplate).createCard()
 
   return cardElement
 }
@@ -97,18 +97,16 @@ function saveElemInfo(evt) {
 
 infoUserButton.addEventListener('click', function() {
   openPopup(popupProfile)
+  editProfileValidator.resetValidation()
   popupProfileNameInput.value = infoUserName.textContent
   popupProfileJobInput.value = infoUserStatus.textContent
-  editProfileValidator.clearPopupValues()
-  editProfileValidator.checkOnOpening()
 })
 
 profileAddButton.addEventListener('click', function() {
   openPopup(popupAddElem)
+  addCardValidator.resetValidation()
   popupAddElemNameInput.value = ''
   popupAddElemLinkInput.value = ''
-  addCardValidator.clearPopupValues()
-  addCardValidator.checkOnOpening()
 })
 
 popupProfileClosebutton.addEventListener('click', function() {
